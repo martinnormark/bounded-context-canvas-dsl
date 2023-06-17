@@ -1,0 +1,201 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "purpose": {
+            "type": "string"
+        },
+        "strategicClassification": {
+            "type": "object",
+            "properties": {
+                "importance": {
+                    "type": "string",
+                    "enum": [
+                        "core domain",
+                        "supporting domain",
+                        "generic"
+                    ]
+                },
+                "role": {
+                    "type": "string",
+                    "enum": [
+                        "revenue generator",
+                        "engagement creator",
+                        "compliance enforcer"
+                    ]
+                },
+                "evolution": {
+                    "type": "string",
+                    "enum": [
+                        "genesis",
+                        "custom built",
+                        "product",
+                        "commodity"
+                    ]
+                }
+            },
+            "required": [
+                "importance",
+                "role",
+                "evolution"
+            ]
+        },
+        "domainRoles": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "description"
+                ]
+            }
+        },
+        "inboundCommunication": {
+            "$ref": "#/definitions/communication"
+        },
+        "outboundCommunication": {
+            "$ref": "#/definitions/communication"
+        },
+        "ubiquitousLanguage": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name",
+                    "description"
+                ]
+            }
+        },
+        "businessDecisions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "assumptions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "verificationMetrics": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "enum": [
+                            "CI/CD environments",
+                            "JIRA",
+                            "live systems",
+                            "other"
+                        ]
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "source",
+                    "description"
+                ]
+            }
+        },
+        "openQuestions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "purpose",
+        "strategicClassification",
+        "domainRoles",
+        "inboundCommunication",
+        "outboundCommunication",
+        "ubiquitousLanguage",
+        "businessDecisions",
+        "assumptions",
+        "verificationMetrics",
+        "openQuestions"
+    ],
+    "definitions": {
+        "communication": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "command",
+                                    "query",
+                                    "event"
+                                ]
+                            },
+                            "content": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "content"
+                        ]
+                    }
+                },
+                "collaborators": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "bounded context",
+                                    "frontend",
+                                    "other"
+                                ]
+                            },
+                            "relationship": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "relationship"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "messages",
+                "collaborators"
+            ]
+        }
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "$schema": "../schemas/schema.json",
+    "name": "Order Management",
+    "purpose": "Handle customer orders from creation to delivery",
+    "strategicClassification": {
+        "importance": "core domain",
+        "role": "revenue generator",
+        "evolution": "product"
+    },
+    "domainRoles": [
+        {
+            "name": "Order Creation",
+            "description": "Handles the initial creation of an order"
+        },
+        {
+            "name": "Order Tracking",
+            "description": "Tracks the progress of an order"
+        }
+    ],
+    "inboundCommunication": {
+        "messages": [
+            {
+                "type": "command",
+                "content": "Create Order"
+            }
+        ],
+        "collaborators": [
+            {
+                "type": "frontend",
+                "relationship": "master"
+            }
+        ]
+    },
+    "outboundCommunication": {
+        "messages": [
+            {
+                "type": "event",
+                "content": "Order Created"
+            }
+        ],
+        "collaborators": [
+            {
+                "type": "bounded context",
+                "relationship": "slave"
+            }
+        ]
+    },
+    "ubiquitousLanguage": [
+        {
+            "name": "Order",
+            "description": "A request from a customer for one or more products"
+        }
+    ],
+    "businessDecisions": [
+        "Orders must be paid before they are shipped",
+        "Orders can be cancelled before they are shipped"
+    ],
+    "assumptions": [
+        "Payments are handled by another bounded context",
+        "Shipping is handled by another bounded context"
+    ],
+    "verificationMetrics": [
+        {
+            "source": "CI/CD environments",
+            "description": "Number of successful order creations"
+        }
+    ],
+    "openQuestions": [
+        "Do we need to handle back-orders?"
+    ]
+}
