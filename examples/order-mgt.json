@@ -48,7 +48,19 @@
     "ubiquitousLanguage": [
         {
             "name": "Order",
-            "description": "A request from a customer for one or more products"
+            "description": "A request from a customer for one or more products",
+            "examples": [
+                "Order #123",
+                "Order for John Doe"
+            ]
+        },
+        {
+            "name": "Shipping",
+            "description": "The process of sending an order to the customer",
+            "examples": [
+                "Shipping via UPS",
+                "Shipping via Fedex"
+            ]
         }
     ],
     "businessDecisions": [

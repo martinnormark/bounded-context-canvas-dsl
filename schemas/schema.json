@@ -77,11 +77,18 @@
                     },
                     "description": {
                         "type": "string"
+                    },
+                    "examples": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     }
                 },
                 "required": [
                     "name",
-                    "description"
+                    "description",
+                    "examples"
                 ]
             }
         },
