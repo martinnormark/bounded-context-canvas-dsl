@@ -7,7 +7,7 @@
 		<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 		<style type="text/tailwindcss">
 			.section-title {
-				@apply text-2xl font-semibold;
+				@apply text-2xl font-semibold text-gray-700;
 			}
 
 			.section-subtitle {
@@ -57,9 +57,9 @@
 				<p>Name</p>
 			</div>
 			<div class="flex flex-col max-sm:space-y-2 md:min-h-36 md:flex-row md:space-x-2">
-				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5">Purpose</div>
-				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5">Strategic Classification</div>
-				<div class="border-2 border-solid border-sky-500 p-2 md:flex-grow">Domain Roles</div>
+				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5"><p class="section-title">Purpose</p></div>
+				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5"><p class="section-title">Strategic Classification</p></div>
+				<div class="border-2 border-solid border-sky-500 p-2 md:flex-grow"><p class="section-title">Domain Roles</p></div>
 			</div>
 
 			<div class="flex min-h-96 flex-col space-x-2 border-4 border-solid border-gray-400 md:flex-row">
@@ -142,9 +142,15 @@
 			</div>
 
 			<div class="flex min-h-48 flex-row space-x-2">
-				<div class="w-2/5 border-2 border-solid border-sky-500">Assumptions</div>
-				<div class="w-2/5 border-2 border-solid border-sky-500">Verification Metrics</div>
-				<div class="flex-grow border-2 border-solid border-sky-500">Open Questions</div>
+				<div class="w-2/5 border-2 border-solid border-sky-500">
+					<p class="section-title">Assumptions</p>
+				</div>
+				<div class="w-2/5 border-2 border-solid border-sky-500">
+					<p class="section-title">Verification Metrics</p>
+				</div>
+				<div class="flex-grow border-2 border-solid border-sky-500">
+					<p class="section-title">Open Questions</p>
+				</div>
 			</div>
 		</div>
 	</body>
