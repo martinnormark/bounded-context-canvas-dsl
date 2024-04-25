@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "ajv": "^8.12.0",
+    "browser-sync": "^3.0.2",
     "commander": "^11.0.0",
     "puppeteer": "^22.7.0"
   }
