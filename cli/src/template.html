@@ -6,6 +6,10 @@
 		<title>Bounded Context Canvas</title>
 		<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 		<style type="text/tailwindcss">
+			.section-wrapper {
+				@apply border-4 border-solid border-gray-400 p-2;
+			}
+
 			.section-title {
 				@apply text-2xl font-semibold text-gray-700;
 			}
@@ -57,22 +61,34 @@
 				<p>Name</p>
 			</div>
 			<div class="flex flex-col max-sm:space-y-2 md:min-h-36 md:flex-row md:space-x-2">
-				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5"><p class="section-title">Purpose</p></div>
-				<div class="border-2 border-solid border-sky-500 p-2 md:w-2/5"><p class="section-title">Strategic Classification</p></div>
-				<div class="border-2 border-solid border-sky-500 p-2 md:flex-grow"><p class="section-title">Domain Roles</p></div>
+				<div class="section-wrapper md:w-2/5"><p class="section-title">Purpose</p></div>
+				<div class="section-wrapper md:w-2/5"><p class="section-title">Strategic Classification</p></div>
+				<div class="section-wrapper md:flex-grow"><p class="section-title">Domain Roles</p></div>
 			</div>
 
-			<div class="flex min-h-96 flex-col space-x-2 border-4 border-solid border-gray-400 md:flex-row">
+			<div class="section-wrapper flex min-h-96 flex-col space-x-2 md:flex-row">
 				<div class="flex w-1/3 flex-col lg:w-2/5">
 					<header class="px-2 py-4">
 						<p class="section-title">Inbound communication</p>
-						<div class="flex flex-row">
-							<p class="section-subtitle flex-grow">Collaborator</p>
-							<p class="section-subtitle flex-grow">Messages</p>
+						<div class="flex flex-row lg:justify-between">
+							<p class="section-subtitle">Collaborator</p>
+							<p class="section-subtitle">Messages</p>
 						</div>
 					</header>
 					<div class="comms-swimlane flex lg:flex-row lg:justify-between">
-						<div class="comms-collaborators p-2">This is a collaborator which is performing the messages to the right</div>
+						<div class="comms-collaborators p-2">
+							<svg width="200" height="200" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+								<g>
+									<path
+										d="m 86.1 378.3 a 50 50 90 1 1 91.9 -159.4 a 50 50 90 1 1 175.1 -26.2 a 50 50 90 1 1 166.5 79.1 a 50 50 90 1 1 75.1 118.8 a 50 50 90 1 1 -133.8 72.8 a 50 50 90 1 1 -186.4 -24.9 a 50 50 90 1 1 -188.5 -60.2 z"
+										fill="#BFA1FF"
+										stroke="#6F51ED"
+										stroke-width="4"
+									/>
+									<text x="50%" y="50%" text-anchor="middle" stroke="#454545" stroke-width="1px" font-size="70">Various BCCs</text>
+								</g>
+							</svg>
+						</div>
 						<div class="comms-messages w-2/3">
 							<div class="message-command">The note should have a title and some body text.</div>
 							<div class="message-query">The note should have a title and some body text.</div>
@@ -133,22 +149,22 @@
 				<div class="flex w-1/3 flex-col lg:w-2/5">
 					<header class="px-2 py-4">
 						<p class="section-title">Outbound communication</p>
-						<div class="flex flex-row">
-							<p class="section-subtitle flex-grow">Messages</p>
-							<p class="section-subtitle flex-grow">Collaborator</p>
+						<div class="flex flex-row lg:justify-between">
+							<p class="section-subtitle">Messages</p>
+							<p class="section-subtitle">Collaborator</p>
 						</div>
 					</header>
 				</div>
 			</div>
 
 			<div class="flex min-h-48 flex-row space-x-2">
-				<div class="w-2/5 border-2 border-solid border-sky-500">
+				<div class="section-wrapper w-2/5">
 					<p class="section-title">Assumptions</p>
 				</div>
-				<div class="w-2/5 border-2 border-solid border-sky-500">
+				<div class="section-wrapper w-2/5">
 					<p class="section-title">Verification Metrics</p>
 				</div>
-				<div class="flex-grow border-2 border-solid border-sky-500">
+				<div class="section-wrapper flex-grow">
 					<p class="section-title">Open Questions</p>
 				</div>
 			</div>
