@@ -11,10 +11,12 @@ function loadCanvasData(bccFilePath) {
 	return fs.readFileSync(bccFilePath, 'utf8');
 }
 
-module.exports = async (bccFilePath, port = 3000) => {
+module.exports = async (bccFilePath, background = false, port = 3000) => {
 	bs.init({
 		files: [path.resolve(__dirname, '../template.html'), bccFilePath],
 		port,
+		logLevel: background === true ? 'silent' : 'info',
+		browser: background === true ? [] : 'default',
 		server: {
 			baseDir: path.resolve(__dirname, '../'),
 			index: 'template.html',

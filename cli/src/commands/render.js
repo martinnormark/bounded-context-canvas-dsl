@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
+const serve = require('./serve');
 
 module.exports = async (bccFilePath, outputPath) => {
+	serve(bccFilePath, true);
 	const browser = await puppeteer.launch({
 		headless: true,
 	});
@@ -9,8 +11,11 @@ module.exports = async (bccFilePath, outputPath) => {
 	await page.goto(`http://localhost:3000/view.html`);
 	await page.waitForSelector('body');
 
-	// take screenshot of the page
 	await page.screenshot({ path: outputPath, fullPage: true });
 
 	await browser.close();
+
+	console.log(`Screenshot saved to ${outputPath}`);
+
+	process.exit(0);
 };
