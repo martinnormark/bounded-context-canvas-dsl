@@ -53,15 +53,22 @@
 			.message-event {
 				@apply bg-orange-400;
 			}
+
+			#__bs_notify__ {
+				display: none !important;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="flex min-h-screen flex-col space-y-4 overflow-hidden bg-gray-50 p-4">
 			<div class="flex h-12 flex-col justify-center bg-slate-100 p-4 md:bg-slate-300 lg:bg-gray-300">
-				<p>Name</p>
+				<p class="font-semibold">Name: <span class="font-normal">{{name}}</span></p>
 			</div>
 			<div class="flex flex-col max-sm:space-y-2 md:min-h-36 md:flex-row md:space-x-2">
-				<div class="section-wrapper lg:w-2/5"><p class="section-title">Purpose</p></div>
+				<div class="section-wrapper lg:w-2/5">
+					<p class="section-title">Purpose</p>
+					<p class="prose">{{purpose}}</p>
+				</div>
 				<div class="section-wrapper lg:w-1/5"><p class="section-title">Strategic Classification</p></div>
 				<div class="section-wrapper lg:w-2/5"><p class="section-title">Domain Roles</p></div>
 			</div>
