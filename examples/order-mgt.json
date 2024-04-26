@@ -17,34 +17,46 @@
             "description": "Tracks the progress of an order"
         }
     ],
-    "inboundCommunication": {
-        "messages": [
-            {
-                "type": "command",
-                "content": "Create Order"
-            }
-        ],
-        "collaborators": [
-            {
-                "type": "frontend",
-                "relationship": "master"
-            }
-        ]
-    },
-    "outboundCommunication": {
-        "messages": [
-            {
-                "type": "event",
-                "content": "Order Created"
-            }
-        ],
-        "collaborators": [
-            {
-                "type": "bounded context",
-                "relationship": "slave"
-            }
-        ]
-    },
+    "inboundCommunication": [
+        {
+            "groupName": "Order Creation",
+            "messages": [
+                {
+                    "type": "command",
+                    "content": "Create Order"
+                },
+                {
+                    "type": "query",
+                    "content": "Get Order"
+                }
+            ],
+            "collaborators": [
+                {
+                    "type": "frontend",
+                    "name": "Frontend",
+                    "relationship": "master"
+                }
+            ]
+        }
+    ],
+    "outboundCommunication": [
+        {
+            "groupName": "Order Creation",
+            "messages": [
+                {
+                    "type": "event",
+                    "content": "Order Created"
+                }
+            ],
+            "collaborators": [
+                {
+                    "type": "bounded context",
+                    "name": "Payment Gateway",
+                    "relationship": "slave"
+                }
+            ]
+        }
+    ],
     "ubiquitousLanguage": [
         {
             "name": "Order",
