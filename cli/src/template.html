@@ -39,7 +39,7 @@
 			}
 
 			.comms-messages {
-				@apply flex flex-row flex-wrap gap-2 justify-end;
+				@apply flex flex-row flex-wrap gap-2 items-start;
 			}
 
 			.message-command {
@@ -70,7 +70,17 @@
 					<p class="prose">{{purpose}}</p>
 				</div>
 				<div class="section-wrapper lg:w-1/5"><p class="section-title">Strategic Classification</p></div>
-				<div class="section-wrapper lg:w-2/5"><p class="section-title">Domain Roles</p></div>
+				<div class="section-wrapper lg:w-2/5">
+					<p class="section-title">Domain Roles</p>
+					<ul>
+						{{#each domainRoles}}
+						<li>
+							<span class="font-semibold">{{this.name}}</span>
+							<p class="prose">{{this.description}}</p>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
 			</div>
 
 			<div class="section-wrapper flex flex-col md:flex-row min-h-96 space-x-2">
@@ -82,29 +92,33 @@
 							<p class="section-subtitle">Messages</p>
 						</div>
 					</header>
-					<div class="comms-swimlane flex lg:flex-row lg:justify-between">
-						<div class="comms-collaborators p-2">
-							<svg width="200" height="200" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
-								<g>
-									<path
-										d="m 86.1 378.3 a 50 50 90 1 1 91.9 -159.4 a 50 50 90 1 1 175.1 -26.2 a 50 50 90 1 1 166.5 79.1 a 50 50 90 1 1 75.1 118.8 a 50 50 90 1 1 -133.8 72.8 a 50 50 90 1 1 -186.4 -24.9 a 50 50 90 1 1 -188.5 -60.2 z"
-										fill="#BFA1FF"
-										stroke="#6F51ED"
-										stroke-width="4"
-									/>
-									<text x="50%" y="50%" text-anchor="middle" stroke="#454545" stroke-width="1px" font-size="70">Various BCCs</text>
-								</g>
-							</svg>
-						</div>
-						<div class="comms-messages w-2/3">
-							<div class="message-command">The note should have a title and some body text.</div>
-							<div class="message-query">The note should have a title and some body text.</div>
-							<div class="message-event">The note should have a title and some body text.</div>
-							<div class="message-event">The note should have a title and some body text.</div>
-							<div class="message-event">The note should have a title and some body text.</div>
-							<div class="message-event">The note should have a title and some body text.</div>
+					{{#each inboundCommunication}}
+					<div class="comms-swimlane">
+						<h2>{{this.groupName }}</h2>
+						<div class="flex lg:flex-row lg:justify-between">
+							<div class="comms-collaborators p-2">
+								{{#each this.collaborators}}
+								<svg width="120" height="120" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+									<g>
+										<path
+											d="m 86.1 378.3 a 50 50 90 1 1 91.9 -159.4 a 50 50 90 1 1 175.1 -26.2 a 50 50 90 1 1 166.5 79.1 a 50 50 90 1 1 75.1 118.8 a 50 50 90 1 1 -133.8 72.8 a 50 50 90 1 1 -186.4 -24.9 a 50 50 90 1 1 -188.5 -60.2 z"
+											fill="#BFA1FF"
+											stroke="#6F51ED"
+											stroke-width="4"
+										/>
+										<text x="50%" y="50%" text-anchor="middle" stroke="#454545" stroke-width="1px" font-size="70">{{ this.name }}</text>
+									</g>
+								</svg>
+								{{/each}}
+							</div>
+							<div class="comms-messages justify-end w-2/3">
+								{{#each this.messages}}
+								<div class="message-{{ this.type }}">{{ this.content }}</div>
+								{{/each}}
+							</div>
 						</div>
 					</div>
+					{{/each}}
 				</div>
 				<div class="w-1/3 py-4 lg:w-1/5">
 					<div class="h-full border-2 border-solid border-gray-500">
@@ -115,26 +129,12 @@
 									<p class="section-subtitle text-center">Context-specific domain terminology.</p>
 								</header>
 								<div class="grid grid-cols-2 gap-2 px-2">
+									{{#each ubiquitousLanguage}}
 									<div class="ubi-term">
-										<header>Portfolio Year</header>
-										<p>this is a year to describe the portfolio etc.</p>
+										<header>{{ this.name }}</header>
+										<p>{{ this.description }}</p>
 									</div>
-									<div class="ubi-term">
-										<header>Portfolio Year</header>
-										<p>this is a year to describe the portfolio etc.</p>
-									</div>
-									<div class="ubi-term">
-										<header>Portfolio Year</header>
-										<p>this is a year to describe the portfolio etc.</p>
-									</div>
-									<div class="ubi-term">
-										<header>Portfolio Year</header>
-										<p>this is a year to describe the portfolio etc.</p>
-									</div>
-									<div class="ubi-term">
-										<header>Portfolio Year</header>
-										<p>this is a year to describe the portfolio etc.</p>
-									</div>
+									{{/each}}
 								</div>
 							</div>
 							<div class="flex-grow">
@@ -143,11 +143,9 @@
 									<p class="section-subtitle px-2 text-center">Business rules, policies and decisions.</p>
 								</header>
 								<div class="grid grid-cols-2 gap-2 px-2">
-									<div class="biz-pol">this is a test test</div>
-									<div class="biz-pol">this is a test test</div>
-									<div class="biz-pol">this is a test test</div>
-									<div class="biz-pol">this is a test test</div>
-									<div class="biz-pol">this is a test test</div>
+									{{#each businessDecisions}}
+									<div class="biz-pol">{{ this }}</div>
+									{{/each}}
 								</div>
 							</div>
 						</div>
@@ -161,18 +159,51 @@
 							<p class="section-subtitle">Collaborator</p>
 						</div>
 					</header>
+					{{#each outboundCommunication}}
+					<div class="comms-swimlane">
+						<h2>{{this.groupName }}</h2>
+						<div class="flex lg:flex-row lg:justify-between">
+							<div class="comms-messages w-2/3">
+								{{#each this.messages}}
+								<div class="message-{{ this.type }}">{{ this.content }}</div>
+								{{/each}}
+							</div>
+							<div class="comms-collaborators p-2">
+								{{#each this.collaborators}}
+								<svg width="120" height="120" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+									<g>
+										<path
+											d="m 86.1 378.3 a 50 50 90 1 1 91.9 -159.4 a 50 50 90 1 1 175.1 -26.2 a 50 50 90 1 1 166.5 79.1 a 50 50 90 1 1 75.1 118.8 a 50 50 90 1 1 -133.8 72.8 a 50 50 90 1 1 -186.4 -24.9 a 50 50 90 1 1 -188.5 -60.2 z"
+											fill="#BFA1FF"
+											stroke="#6F51ED"
+											stroke-width="4"
+										/>
+										<text x="50%" y="50%" text-anchor="middle" stroke="#454545" stroke-width="1px" font-size="70">{{ this.name }}</text>
+									</g>
+								</svg>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+					{{/each}}
 				</div>
 			</div>
 
 			<div class="flex min-h-48 flex-row space-x-2">
 				<div class="section-wrapper w-2/5">
 					<p class="section-title">Assumptions</p>
+					{{#each assumptions}}
+					<p class="prose">{{ this }}</p>
+					{{/each}}
 				</div>
 				<div class="section-wrapper w-2/5">
 					<p class="section-title">Verification Metrics</p>
 				</div>
 				<div class="section-wrapper flex-grow">
 					<p class="section-title">Open Questions</p>
+					{{#each openQuestions}}
+					<p class="prose">{{ this }}</p>
+					{{/each}}
 				</div>
 			</div>
 		</div>
