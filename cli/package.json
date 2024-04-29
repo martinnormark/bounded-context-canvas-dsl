@@ -4,8 +4,11 @@
   "description": "CLI for working structurally with the Bounded Context Canvas.",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "bcc": "./dist/main.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/index.js --bundle --format=esm --platform=node --packages=external --loader:.html=text --outfile=dist/main.js"
   },
   "keywords": [
     "domain-driven-design"
@@ -18,5 +21,8 @@
     "commander": "^11.0.0",
     "handlebars": "^4.7.8",
     "puppeteer": "^22.7.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2"
   }
 }

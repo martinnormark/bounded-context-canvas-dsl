@@ -2,19 +2,17 @@ import fs from 'fs';
 import path from 'path';
 import handlebars from 'handlebars';
 import create from 'browser-sync';
-
-function loadTemplate() {
-	return fs.readFileSync(path.resolve(__dirname, '../template.html'), 'utf8');
-}
+import { fileURLToPath } from 'url';
+import html from '../template.html';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function loadCanvasData(bccFilePath) {
 	return fs.readFileSync(bccFilePath, 'utf8');
 }
 
 const serve = async (bccFilePath, background = false, port = 3000) => {
-	const bs = create();
-
-	bs.init({
+	const bs = create({
 		files: [path.resolve(__dirname, '../template.html'), bccFilePath],
 		port,
 		logLevel: background === true ? 'silent' : 'info',
@@ -35,7 +33,6 @@ const serve = async (bccFilePath, background = false, port = 3000) => {
 			{
 				route: '/view.html',
 				handle: function (req, res, next) {
-					const html = loadTemplate();
 					const json = loadCanvasData(bccFilePath);
 					const data = JSON.parse(json);
 					const template = handlebars.compile(html);
