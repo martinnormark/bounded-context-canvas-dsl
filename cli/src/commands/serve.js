@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const bs = require('browser-sync').create();
-const handlebars = require('handlebars');
+import fs from 'fs';
+import path from 'path';
+import handlebars from 'handlebars';
+import create from 'browser-sync';
 
 function loadTemplate() {
 	return fs.readFileSync(path.resolve(__dirname, '../template.html'), 'utf8');
@@ -11,7 +11,9 @@ function loadCanvasData(bccFilePath) {
 	return fs.readFileSync(bccFilePath, 'utf8');
 }
 
-module.exports = async (bccFilePath, background = false, port = 3000) => {
+const serve = async (bccFilePath, background = false, port = 3000) => {
+	const bs = create();
+
 	bs.init({
 		files: [path.resolve(__dirname, '../template.html'), bccFilePath],
 		port,
@@ -44,3 +46,5 @@ module.exports = async (bccFilePath, background = false, port = 3000) => {
 		],
 	});
 };
+
+export default serve;

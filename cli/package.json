@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "CLI for working structurally with the Bounded Context Canvas.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

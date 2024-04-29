@@ -1,7 +1,7 @@
-const puppeteer = require('puppeteer');
-const serve = require('./serve');
+import puppeteer from 'puppeteer';
+import serve from './serve.js';
 
-module.exports = async (bccFilePath, outputPath) => {
+const render = async (bccFilePath, outputPath) => {
 	serve(bccFilePath, true);
 	const browser = await puppeteer.launch({
 		headless: true,
@@ -19,3 +19,5 @@ module.exports = async (bccFilePath, outputPath) => {
 
 	process.exit(0);
 };
+
+export default render;

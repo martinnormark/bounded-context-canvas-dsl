@@ -1,8 +1,8 @@
-const Ajv = require('ajv');
-const fs = require('fs');
-const path = require('path');
+import Ajv from 'ajv';
+import fs from 'fs';
+import path from 'path';
 
-module.exports = (bccFilePath, schemaFilePath) => {
+export default (bccFilePath, schemaFilePath) => {
 	if (!bccFilePath) {
 		throw new Error('Please provide a path to the JSON file as the first argument');
 	}
