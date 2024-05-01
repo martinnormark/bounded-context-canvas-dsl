@@ -12,7 +12,9 @@
     "dev": "npm run build -- --watch"
   },
   "keywords": [
-    "domain-driven-design"
+    "domain-driven-design",
+    "ddd",
+    "bounded-context-canvas"
   ],
   "author": "martinnormark",
   "license": "MIT",
