@@ -14,7 +14,7 @@ const newCanvas = async (name, workingDirectory) => {
 	}
 
 	// sanitize name for file-name
-	const fileName = name.toLowerCase().replace(/\s+/g, '-');
+	const fileName = name.toLowerCase().replace(/[^a-z0-9]/gi, '_');
 	const filePath = path.resolve(canvasDir, `${fileName}.json`);
 
 	fs.writeFileSync(filePath, JSON.stringify(example, null, 2) + '\n', 'utf8');
