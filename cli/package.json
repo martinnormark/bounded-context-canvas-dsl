@@ -1,11 +1,11 @@
 {
-  "name": "bcc-dsl-cli",
+  "name": "bccode",
   "version": "0.1.0",
   "description": "CLI for working structurally with the Bounded Context Canvas.",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "bcc": "./dist/main.js"
+    "bccode": "./dist/main.js"
   },
   "scripts": {
     "build": "esbuild src/index.js --bundle --format=esm --platform=node --packages=external --loader:.html=text --outfile=dist/main.js"
