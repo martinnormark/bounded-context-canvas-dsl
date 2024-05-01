@@ -8,7 +8,8 @@
     "bccode": "./dist/main.js"
   },
   "scripts": {
-    "build": "esbuild src/index.js --bundle --format=esm --platform=node --packages=external --loader:.html=text --outfile=dist/main.js"
+    "build": "esbuild src/index.js --bundle --format=esm --platform=node --packages=external --loader:.html=text --outfile=dist/main.js",
+    "dev": "npm run build -- --watch"
   },
   "keywords": [
     "domain-driven-design"
